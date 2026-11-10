@@ -2,6 +2,14 @@
 
 Research companion for the **Gemma 4 Developer Agent Paper Track** by **Clifford Imaguezegie**.
 
+## Start here — public Kaggle companion
+
+**Primary reviewer entry point:** [**Public Kaggle RARV companion notebook**](https://www.kaggle.com/code/cliffordimaguezegie/gemma4-revision-aware-repair-verification/notebook). It presents the architecture, study evidence, runnable E17 CPU replay, archived-result reconciliation and source-module inspection without running Gemma inference. Attach the [public E17 evidence dataset](https://www.kaggle.com/datasets/cliffordimaguezegie/gemma4-rarv-evidence) when running on Kaggle.
+
+- **Exact uploaded companion source:** [`Gemma4_RARV_Kaggle_Companion_v2_6.ipynb`](notebooks/Gemma4_RARV_Kaggle_Companion_v2_6.ipynb), retained with its saved outputs and provenance as provided by the author. The notebook's internal release metadata identifies **v2.6**; its saved hosted-run description identifies Kaggle Notebook Version 3. These are different version identifiers.
+- **Earlier notebook:** [`Gemma4_RARV_Kaggle_Companion_v1_5.ipynb`](notebooks/Gemma4_RARV_Kaggle_Companion_v1_5.ipynb) remains available for historical reference, but is **not** the recommended reviewer entry point.
+- **Reproduction instructions:** [CPU verification, optional full archive audit and original GPU experiment paths](evidence/REPRODUCE.md).
+
 ## Objective
 
 A test pass describes the code revision on which the test ran. After an autonomous software-repair agent edits production code, that earlier pass may no longer be valid evidence for the current revision. **Revision-Aware Repair Verification (RARV)** examines whether proactively refreshing such evidence helps a Gemma 4 repair agent, compared with requiring current evidence only when it submits its patch.
@@ -90,12 +98,17 @@ The runner captures eligible production diffs, including candidates present at t
 
 The comparison uses one rollout per policy per task across three Python repositories. All nine primary registered public checks passed on their buggy baselines; these were executable checks, but the passes did not demonstrate that they discriminated the reported issues. [Evidence index](docs/evidence-index.md) · [Reconstructed results](evidence/validation/Results_Bundled.json)
 
-## Reproduce on CPU
+## Reproduction routes — choose the appropriate level of evidence
 
-Use the [reviewer notebook](notebooks/Gemma4_RARV_Kaggle_Companion_v1_5.ipynb), or download the [E17 package](evidence/Gemma4_RARV_CPU_Review_Package_v1_0.zip) and follow the [local instructions](evidence/REPRODUCE.md). The documented local setup uses **Linux, Python 3.12 and Git** with pinned offline wheels.
+| Route | Entry point | What it establishes | Requirements |
+|---|---|---|---|
+| **A — CPU reviewer verification (recommended)** | [Public Kaggle companion](https://www.kaggle.com/code/cliffordimaguezegie/gemma4-revision-aware-repair-verification/notebook) or [E17 package](evidence/Gemma4_RARV_CPU_Review_Package_v1_0.zip) | Executes the frozen controller on a synthetic Git fixture and reconstructs recorded results from bundled evidence | No Gemma GPU or new model calls. Local documented setup: Linux, Python 3.12, Git and offline wheels; the hosted companion documents its own Kaggle runtime |
+| **B — Original GPU study procedures** | [GP00–GP05 notebooks](docs/evidence-index.md) and [stage inputs below](#implementation-prerequisites--original-google-competition-inputs) | Re-executes relevant study methods where inputs and permissions are available; a fresh agent rollout is not guaranteed to reproduce historical traces | Compatible GPU, pinned Gemma model and runtime, task repositories, datasets, stage-specific fixtures; protected grading additionally needs authorised evaluator assets |
+| **Optional — Full sealed-archive candidate audit** | E17 `reconcile_results.py --archives ...` | Verifies original archive digests and reconciles all 28 recorded captured candidate records | Seven sealed original archives; not publicly bundled |
 
-- **Controller replay:** six trusted pytest executions, zero model calls; after the scripted production edit, B holds a stale receipt while C records a current failure. Both gates block the broken state and accept the restored state. [Replay validation](evidence/validation/Replay_Report.json)
-- **Results reconciliation:** selected original JSON evidence members are joined to archived grades by attempt ID and production candidate digest. With all seven sealed archives, original-archive mode additionally checks complete hashes and 28 captured candidate records. Fresh grading requires the organiser's protected evaluator and assets. [Archive provenance](evidence/Archive_Provenance.json) · [Original-archive validation record](evidence/validation/Results_Original_Archives.json)
+**Route A detail:** The frozen E17 fixture performs six trusted pytest checks with **zero model calls**. After a scripted production edit, B holds a stale receipt and C records a current failure; both gates block the broken state and accept the restored state. [Replay validation](evidence/validation/Replay_Report.json). Its results checker matches selected archived evidence to independent protected grades using exact attempt and candidate identities. [Bundled results](evidence/validation/Results_Bundled.json).
+
+**Boundaries:** CPU replay does **not** perform a new autonomous repair, rerun withheld protected tests or establish superior Policy C success rates. Original-archive reconciliation verifies historical records; it is not a fresh protected evaluation. [Detailed procedures](evidence/REPRODUCE.md) · [Archive provenance](evidence/Archive_Provenance.json).
 
 ## Study materials
 
