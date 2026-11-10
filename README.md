@@ -1,16 +1,59 @@
 # Revision-Aware Repair Verification for Gemma 4 Software Repair Agents
 
-Research companion for the Gemma 4 Developer Agent Paper Track by Clifford Imaguezegie.
+Research companion for the **Gemma 4 Developer Agent Paper Track** by **Clifford Imaguezegie**.
 
 ## Objective
 
-A test pass describes the code revision that was tested. When a repair agent edits production code, the earlier pass may no longer apply. This study asks whether a Gemma 4 agent benefits from receiving a fresh test result immediately after such an edit. Both evaluated policies require current test evidence at submission. One policy also rechecks while the agent is still working.
+A test pass describes the code revision on which the test ran. After an autonomous software-repair agent edits production code, that earlier pass may no longer be valid evidence for the current revision. **Revision-Aware Repair Verification (RARV)** examines whether proactively refreshing such evidence helps a Gemma 4 repair agent, compared with requiring current evidence only when it submits its patch.
 
-The framework tracks three questions separately. Does the result still apply to the current revision? Does the check exercise the relevant behaviour? Did the independently graded patch reach accepted submission?
+The study keeps three questions separate:
+
+1. **Evidence freshness:** Does a trusted test result still apply to the currently observed source revision?
+2. **Test-oracle adequacy:** Does the selected check exercise the behaviour the task actually requires?
+3. **Verified delivery:** Did the *same* production patch that passed independent grading reach an accepted submission?
+
+## Research contributions
+
+The contribution is an **implemented verification framework**, a **matched empirical study**, and **trace-based evidence about assurance boundaries**. The novelty lies in making established techniques work together as an auditable agent-repair process and evaluating what that process can establish—not in inventing revision tracking, state machines or automated testing.
+
+### C1 — An integrated, auditable verification framework
+
+RARV wraps a non-deterministic Gemma 4 coding agent with deterministic evidence and submission controls, while retaining the agent's autonomous tool selection:
+
+- **Revision tracking:** a tool-boundary observer fingerprints eligible production files and records monotonically advancing source revisions.
+- **Trusted receipts:** an isolated pytest adapter binds qualified results to the source revision and digest, registered check and environment identities, and execution provenance.
+- **Evidence-aware policies:** a ledger distinguishes current, stale, failing and unverified results. **Policy B** requires current evidence at submission; **Policy C** uses the same gate and also rechecks a previously passing registered test after a qualifying edit, within budget.
+- **End-to-end provenance:** production-only patch capture, a shared final gate, independent protected grading and reconciliation associate the receipt, edit, policy decision, exact candidate patch, grade and delivery outcome.
+
+**Evidence:** the frozen production controller, trusted adapter and gate execute in the [CPU review package](evidence/Gemma4_RARV_CPU_Review_Package_v1_0.zip). The recorded implementation and attempt artifacts cover FastAPI, Rich and Requests in the evaluated Python harness. Portability to other languages or harnesses is an architectural possibility, not an experimentally established result. [Architecture and evidence index](docs/evidence-index.md) · [Reproduction guide](evidence/REPRODUCE.md)
+
+### C2 — A matched study that measures whether proactive verification actually activates
+
+Instead of assuming that extra checks are useful, we separate the **opportunity to recheck**, **the controller's detection behaviour** and **the resulting patch outcome**:
+
+- **Primary autonomous comparison (GP03):** nine matched task pairs use the same Gemma 4 model, prompts, tools, registered checks, final submission gate and budgets. **B and C each achieved 6/9 protected passes**, a C-minus-B difference of **0.0 percentage points** (95% repository-stratified bootstrap interval **−22.2 to +22.2 points**).
+- **Natural exposure measurement:** across **24 autonomous runs** in GP03–GP05, **zero** trusted passing receipts were followed by a qualifying observed production edit. Thus the effect of proactive rechecking *after a naturally occurring trigger* remains unestimated.
+- **Controlled activation (GP04):** two deliberately invalidating edits caused C to detect test failures in **1.150 s** and **1.047 s**, before the first model request. This demonstrates that the mechanism responds when triggered; it **does not** demonstrate improved autonomous repair success.
+
+**Evidence:** frozen comparisons, recorded controller events, independently graded patches and [reconstructed results](evidence/validation/Results_Bundled.json). The primary estimate is limited by nine pairs, one rollout per arm and the chosen public checks.
+
+### C3 — Concrete findings about where verification evidence stops being sufficient
+
+The case traces show that **freshness, test relevance, independent patch grading and successful delivery are different assurance claims**:
+
+- **A fresh check may be the wrong oracle:** on `fastapi_14258`, both patches passed the public gate but failed protected grading. On `requests_7309`, a public selector blocked two patches that passed the protected suite.
+- **A protected pass is not universal correctness:** the controlled `requests_7205` captures retained the deliberately injected proxy fault, even though both passed the executed protected grading suite. The registered public check did expose that fault.
+- **A passing patch is not necessarily delivered:** three GP03 protected-passing captures never reached verified submission. The study therefore tracks gate acceptance and the independent protected result against the **same patch identity**, separately from patch quality.
+
+**Evidence:** joined source checkpoints, test receipts, captured diffs, protected grades and submission dispositions. These cases identify assurance gaps; they do not establish how common such gaps are outside the measured tasks.
+
+### Reproducibility deliverable supporting C1–C3
+
+The [E17 CPU review package](evidence/Gemma4_RARV_CPU_Review_Package_v1_0.zip) runs the **actual frozen controller**, trusted pytest adapter and submission gate on a synthetic Git fixture. It executes six trusted checks with **zero model calls** and verifies B/C state transitions. Its checker also validates selected original archive members and reconstructs the recorded primary and follow-up results. With the seven original sealed archives, full mode can audit **all 28 captured candidate records**. These checks do **not** reproduce fresh autonomous Gemma runs or rerun the organiser's withheld protected tests.
 
 ## Architecture
 
-The controller observes tool actions and fingerprints the tracked production files. The trusted pytest adapter executes a registered check in isolation and issues a **test receipt** containing the outcome, source revision and digest, check identity and environment identity. The ledger uses these fields to decide whether the receipt is current.
+The tool supervisor observes Gemma's actions and changes to tracked production files. A trusted test receipt binds a result to the checked revision, content, registered test definition and environment. The ledger and verification policy use those identities at tool boundaries and at submission.
 
 ```mermaid
 flowchart TD
@@ -25,12 +68,12 @@ flowchart TD
     P --> E
 ```
 
-| Policy | When a production edit invalidates a trusted pass | At submission |
+| Policy | After a qualifying edit invalidates a trusted pass | At submission |
 |---|---|---|
-| **B · Final gate** | Marks the receipt stale. | Reuses a current pass or reruns a stale or missing check within the remaining budget. |
-| **C · Proactive recheck** | Marks the receipt stale, reruns the check within budget and returns the current result to the agent. | Uses the same gate as B. |
+| **B · Final gate** | Marks the receipt stale and awaits the next check or submission. | Reuses current evidence or reruns missing/stale checks within budget. |
+| **C · Proactive recheck** | Marks the receipt stale, reruns the registered check within budget and returns the current result to the agent. | Uses the **same** gate and acceptance criteria as B. |
 
-The runner captures the production diff, including candidates present at the deadline. The protected evaluator applies that diff to a clean snapshot and grades it independently. **Verified delivery** requires both gate acceptance and a protected pass for the same patch. The attempt, revision and patch digest connect these records.
+The runner captures eligible production diffs, including candidates present at the deadline. Independent evaluation applies each candidate to a clean snapshot. **Verified delivery** requires accepted submission and a protected pass on that same patch, joined through attempt and candidate identities.
 
 ## Evaluation and findings
 
@@ -38,27 +81,24 @@ The runner captures the production diff, including candidates present at the dea
 |---|---:|---:|---:|
 | GP03 primary autonomous | 9 | 18 | 6/9 |
 | GP04 and GP05 autonomous follow-up | 3 | 6 | 1/3 |
-| GP04 controlled activation | 2 | 4 | See detection findings below |
+| GP04 controlled activation | 2 | 4 | 2/2; see detection and recovery limitations below |
 
-- **Primary repair outcome.** All nine GP03 pairs resolved. The paired difference was **0.0 percentage points** with a 95% repository-stratified bootstrap interval of **−22.2 to +22.2 points**. Verified delivery was **5/9 for B and 4/9 for C**. Three protected-passing candidates came from deadline captures without verified delivery.
-- **Autonomous activation.** Across **24 autonomous runs**, no trusted pass was followed by a qualifying production edit. The effect of proactive rechecking after a naturally occurring trigger remains open.
-- **Controlled activation.** C detected the two deliberately introduced failures in **1.150 s and 1.047 s** before the first model request. Both captures in one controlled task retained the injected fault and passed protected grading, exposing a coverage gap in the tests used for that task.
+- **Primary protected repair:** all nine GP03 pairs received final independent scores; B and C each passed **6/9**. The paired difference was **0.0 percentage points** (95% bootstrap interval **−22.2 to +22.2**).
+- **Verified delivery:** **5/9 for B**, **4/9 for C** in GP03. Three passing captured candidates were not delivered.
+- **Natural activation:** **0 qualifying pass-to-edit exposures** across 24 autonomous runs, so the causal effect of proactive rechecking on naturally triggered repairs remains unknown.
+- **Controlled activation:** C detected the two deliberately introduced failures in **1.150 s** and **1.047 s** before the first model request. Both Rich captures restored the known-good seed; both Requests captures retained the injected fault even though they passed the executed protected suite. **No controlled attempt achieved verified delivery.**
 
-The primary comparison uses one rollout per policy per task across three Python repositories. All nine registered public checks passed on the original buggy snapshots. Those baseline passes established that the checks could run and limited what they could tell us about the reported defects. [Evidence index](docs/evidence-index.md) · [Reconstructed results](evidence/validation/Results_Bundled.json)
-
-## Contributions
-
-1. **Revision-bound verification.** An implemented controller that connects trusted test receipts, source revisions and the exact production patch accepted or captured.
-2. **A matched comparison of recheck timing.** The same submission gate and matched budgets isolate the proactive recheck policy. Controlled runs show how the controller responds when the trigger occurs.
-3. **Evidence about verification boundaries.** The trace analysis distinguishes receipt freshness, test coverage, protected patch quality and successful delivery. The repository provides executable checks and archive provenance for reviewers to inspect those findings.
+The comparison uses one rollout per policy per task across three Python repositories. All nine primary registered public checks passed on their buggy baselines; these were executable checks, but the passes did not demonstrate that they discriminated the reported issues. [Evidence index](docs/evidence-index.md) · [Reconstructed results](evidence/validation/Results_Bundled.json)
 
 ## Reproduce on CPU
 
-Start with the reviewer notebook or download E17 and follow the local instructions. The E17 package includes the frozen controller, a synthetic Git fixture and pinned offline wheels. Local replay uses Linux, Python 3.12 and Git. [Reviewer notebook](notebooks/Gemma4_RARV_Kaggle_Companion_v1_5.ipynb) · [E17 package](evidence/Gemma4_RARV_CPU_Review_Package_v1_0.zip) · [Run instructions](evidence/REPRODUCE.md)
+Use the [reviewer notebook](notebooks/Gemma4_RARV_Kaggle_Companion_v1_5.ipynb), or download the [E17 package](evidence/Gemma4_RARV_CPU_Review_Package_v1_0.zip) and follow the [local instructions](evidence/REPRODUCE.md). The documented local setup uses **Linux, Python 3.12 and Git** with pinned offline wheels.
 
-- **Controller replay.** Six trusted checks ran with zero model calls. After a scripted edit, B marked the receipt stale and C recorded a current failure. Both gates blocked the broken candidate and accepted it after restoration. [Replay validation](evidence/validation/Replay_Report.json)
-- **Result reconstruction.** The checker joins selected archived attempt records to recorded protected verdicts. With access to the seven original sealed archives, full archive mode also verifies the 28 candidate records. Fresh protected grading requires the organiser’s evaluator and protected inputs. [Archive provenance](evidence/Archive_Provenance.json) · [Full archive validation](evidence/validation/Results_Original_Archives.json)
+- **Controller replay:** six trusted pytest executions, zero model calls; after the scripted production edit, B holds a stale receipt while C records a current failure. Both gates block the broken state and accept the restored state. [Replay validation](evidence/validation/Replay_Report.json)
+- **Results reconciliation:** selected original JSON evidence members are joined to archived grades by attempt ID and production candidate digest. With all seven sealed archives, original-archive mode additionally checks complete hashes and 28 captured candidate records. Fresh grading requires the organiser's protected evaluator and assets. [Archive provenance](evidence/Archive_Provenance.json) · [Original-archive validation record](evidence/validation/Results_Original_Archives.json)
 
 ## Study materials
 
-The evidence index maps the study from task selection and development through the primary evaluation and follow-ups. The released notebooks retain study source and reference the organiser inputs. Raw traces, competition assets, protected tests and candidate diffs are held with the authorised records. [Study notebooks and evidence](docs/evidence-index.md) · [References](docs/references.md) · [Kaggle Paper Track](https://www.kaggle.com/competitions/gemma-4-developer-agent-paper/overview)
+The [evidence index](docs/evidence-index.md) traces the research from task audit and development through GP03, GP04 and GP05. Released notebooks preserve study source and refer to the organiser's public input mounts. Original raw traces, protected tests, competition assets and full candidate archives are **not** part of the public repository; some verification steps require authorised access to those records.
+
+[Study notebooks and evidence](docs/evidence-index.md) · [References](docs/references.md) · [Kaggle Paper Track](https://www.kaggle.com/competitions/gemma-4-developer-agent-paper/overview)
