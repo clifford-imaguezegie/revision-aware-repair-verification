@@ -102,3 +102,22 @@ Use the [reviewer notebook](notebooks/Gemma4_RARV_Kaggle_Companion_v1_5.ipynb), 
 The [evidence index](docs/evidence-index.md) traces the research from task audit and development through GP03, GP04 and GP05. Released notebooks preserve study source and refer to the organiser's public input mounts. Original raw traces, protected tests, competition assets and full candidate archives are **not** part of the public repository; some verification steps require authorised access to those records.
 
 [Study notebooks and evidence](docs/evidence-index.md) · [References](docs/references.md) · [Kaggle Paper Track](https://www.kaggle.com/competitions/gemma-4-developer-agent-paper/overview)
+
+## Implementation prerequisites — original Google competition inputs
+
+**The implementation notebooks are not standalone CPU demos.** For GP00–GP05, first attach the original **Google — The Gemma 4 Developer Agent Competition** datasets and inputs in Kaggle. The following are the mounted locations supplied for this project:
+
+| Input | Kaggle mount path | Intended use |
+|---|---|---|
+| Competition dataset | `/kaggle/input/competitions/gemma-4-developer-agent` | Published tasks, repository snapshots and organiser evaluator inputs |
+| Datafix | `/kaggle/input/datasets/cliffordimaguezegie/datafix` | Supplementary evaluation/data fixes |
+| Requests fixture wheels | `/kaggle/input/datasets/cliffordimaguezegie/gp03-requests-fixture-wheels-v1` | Requests' offline HTTP/HTTPS grading fixtures |
+| GP03 test wheels | `/kaggle/input/datasets/cliffordimaguezegie/gp03-test-wheels-v2` | Pinned grading/test dependencies |
+| Organiser wheelhouse | `/kaggle/input/datasets/metric/gemma-4-developer-agent-wheelhouse` | Offline organiser runtime dependencies |
+| Gemma 4 31B QAT checkpoint (v2) | `/kaggle/input/models/google/gemma-4/other/gemma-4-31b-it-qat-w4a16-ct/2` | Live Gemma 4 GPU evaluation; use the project's pinned model and adapters |
+| **E17 CPU evidence ZIP** | `/kaggle/input/datasets/cliffordimaguezegie/gemma4-rarv-evidence` | **The companion's CPU replay and archived-result reconstruction** |
+
+**Execution requirements by stage:** GP00/GP01 and the GP02C/GP03 CPU qualification stages require the dataset, repository snapshots and their compatible offline dependencies. Live GP02B, GP02C worker, GP03, GP04 and GP05 model experiments require a compatible **GPU environment** (the reported runs used four NVIDIA L4s), the pinned model/runtime, and the stage's original source/evidence inputs. Independent protected grading requires the organiser's authorised evaluator assets and, for historical archived-grade reconstruction, the corresponding sealed archives. The supplementary datasets above address known fixture/dependency recovery; **which of them is needed varies by notebook**.
+
+**Reproduction meaning:** The implementation notebooks contain code and methods and may reproduce their *procedures* when all original inputs and hardware are available. A fresh non-deterministic Gemma run need not produce byte-identical historical tool trajectories. Saved outputs correspond to the recorded source sessions and must not be presented as new runs.
+
