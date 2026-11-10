@@ -1,0 +1,106 @@
+{
+  "archives": {
+    "gp03_grade": {
+      "filename": "GP03_Targeted_CPU_Grades_20261110T110823Z_9641559d.zip",
+      "members": {
+        "Grade_Report.json": {
+          "bytes": 1047,
+          "sha256": "b9a6ac298af6babf4f17bbaf957ff59c04f941f6b20c3bcb0c78249d69981b57"
+        },
+        "Paired_Results.json": {
+          "bytes": 9795,
+          "sha256": "b3618dd753cf29a6037262b714f33b0003e08891edcef74400f5df51cf1f1c7b"
+        },
+        "Protected_Grades.json": {
+          "bytes": 9471,
+          "sha256": "c123e377ac49d8eb8080e06feb35c809efa9d53e1eb6db7d60980a01eef7a3fb"
+        }
+      },
+      "sha256": "6d0b6fbfb3c01818ebdd116a389b66758e727cc77851b808a38e15f79751f294"
+    },
+    "gp03_wave1": {
+      "filename": "GP03_Evaluation_28b958752eac_Wave1_GP03_Session_20261109T114916Z_4fe2b9bf.zip",
+      "members": {
+        "GP03_Evaluation_Freeze_v1_1.json": {
+          "bytes": 32245,
+          "sha256": "28b958752eaca3034eaed5d05ce1069f0f356681ca7c731a825e93a44e5268d4"
+        },
+        "Wave_Report.json": {
+          "bytes": 10855,
+          "sha256": "a3453e67b3fd69226881d386937ce078d704e51e3ba68861e1e3682c32f06ecc"
+        }
+      },
+      "sha256": "7b9d91ade35ac6fa9d134cc515ccd800ce6e36b6ccc3ef5118880910d8bf8432"
+    },
+    "gp03_wave2": {
+      "filename": "GP03_Evaluation_28b958752eac_Wave2_GP03_Session_20261109T131009Z_26b3be8f.zip",
+      "members": {
+        "Wave_Report.json": {
+          "bytes": 8910,
+          "sha256": "143794114eedb88bffd21ab7faba61d6d6d925e3f341960fb04e339ad9179a5a"
+        }
+      },
+      "sha256": "71700ac891c04ae3d38ccce2d2ea4fafff424c261cda077e2d419e98234bb814"
+    },
+    "gp04_gpu": {
+      "filename": "GP04_GPU_Execution_20261109T203725Z_81f17a41.zip",
+      "members": {
+        "GP04_GPU_Report.json": {
+          "bytes": 17355,
+          "sha256": "38748a35944648fdce4b5b9f90bcd254bbd6183b93b0a4eb1e1a8413f5b64c71"
+        }
+      },
+      "sha256": "983bc908991f06c31ff315ea795ae6dc861175891c1879f1f00dad13efe44f3b"
+    },
+    "gp04_grade": {
+      "filename": "GP04_CPU_Grades_20261109T221506Z_f38ba18a.zip",
+      "members": {
+        "GP04_Grade_Report.json": {
+          "bytes": 5127,
+          "sha256": "b04b009e9852a549101e4732fadadb59f1597143990056f23ea2f00396843794"
+        },
+        "GP04_Protected_Grades.json": {
+          "bytes": 5073,
+          "sha256": "10f53dbe07ce462a0633921b65009427807e90b3990fc0a06e4859ef5ad838b8"
+        }
+      },
+      "sha256": "1c00b32c0c62a8fafb5f260382371a347480276de29859c5ec3c5ede78812b98"
+    },
+    "gp05_gpu": {
+      "filename": "GP05_GPU_Execution_20261110T114809Z_2a53ab37.zip",
+      "members": {
+        "GP05_GPU_Report.json": {
+          "bytes": 4365,
+          "sha256": "a1845b63b4e1d83f06d408c6ff184b4a4866c07b2216e86b7fa8b2f26f94e613"
+        }
+      },
+      "sha256": "d6f2661af96415237e5e91fff97bcc99bc5a5c0524964405338641b1052380ba"
+    },
+    "gp05_grade": {
+      "filename": "GP05_CPU_Grades_20261110T122452Z_3b5ea674.zip",
+      "members": {
+        "GP05_Grade_Report.json": {
+          "bytes": 3297,
+          "sha256": "a0374844c8bcadf336c0499c850c1932eca499490a76f8a37ca30ecf51d004a5"
+        },
+        "GP05_Protected_Grades.json": {
+          "bytes": 630,
+          "sha256": "8fa22683240ee08e63f993bc8c189718fe090df666f948bc0b43af99c32ff0f5"
+        }
+      },
+      "sha256": "5f41a57ea546401811fbd9ebb8f883989179f4b5c29b7fc6a52b68217ce863ba"
+    }
+  },
+  "fixture_source": {
+    "definitions": [
+      "CPUPairToolContext",
+      "replay_gp03_fixture"
+    ],
+    "module_sha256": "632cc3d4529c35a2f56fbcc10fa74eefca10a152d5ce5c1c9f7ae815765998e8",
+    "notebook": "GP03_Paired_Runner_CPU_Acceptance_v1_0.ipynb",
+    "notebook_sha256": "96eb1bbd2b667559fef00cd11b046029379cab01aa0a855a4b33e28f26fbb84c",
+    "verbatim_definitions_sha256": "21aa35537a66afceb207781757e451a0c579236c5bad7b7618d5f67bca0889c0"
+  },
+  "gp03_freeze_sha256": "28b958752eaca3034eaed5d05ce1069f0f356681ca7c731a825e93a44e5268d4",
+  "schema": "rarv.review-evidence.v1"
+}

@@ -1,0 +1,50 @@
+{
+  "arms": [
+    {
+      "after_edit_trusted_tests": 1,
+      "after_production_edit": "STALE",
+      "after_scratch_edit": "CURRENT_PASS",
+      "arm": "B",
+      "broken_gate": "BLOCKED_VISIBLE_CHECK_FAILED",
+      "restored_gate": "SUBMITTED_GATE_VALID",
+      "test_provenance": [
+        "agent",
+        "final_gate",
+        "final_gate"
+      ],
+      "trusted_tests": 3
+    },
+    {
+      "after_edit_trusted_tests": 2,
+      "after_production_edit": "CURRENT_FAIL",
+      "after_scratch_edit": "CURRENT_PASS",
+      "arm": "C",
+      "broken_gate": "BLOCKED_VISIBLE_CHECK_FAILED",
+      "restored_gate": "SUBMITTED_GATE_VALID",
+      "test_provenance": [
+        "agent",
+        "controller_recheck",
+        "final_gate"
+      ],
+      "trusted_tests": 3
+    }
+  ],
+  "environment_sha256": "fa312341c038cf7f65087833a92f986adb189fd6979b48b6924038bf420c9806",
+  "fixture_source": {
+    "definitions": [
+      "CPUPairToolContext",
+      "replay_gp03_fixture"
+    ],
+    "module_sha256": "632cc3d4529c35a2f56fbcc10fa74eefca10a152d5ce5c1c9f7ae815765998e8",
+    "notebook": "GP03_Paired_Runner_CPU_Acceptance_v1_0.ipynb",
+    "notebook_sha256": "96eb1bbd2b667559fef00cd11b046029379cab01aa0a855a4b33e28f26fbb84c",
+    "verbatim_definitions_sha256": "21aa35537a66afceb207781757e451a0c579236c5bad7b7618d5f67bca0889c0"
+  },
+  "gp03_public_runtime_sha256": "e8af8493b9784bfbc6ee306a3ef0d1baea55d026f405f079eccb6f2d212b0210",
+  "model_calls": 0,
+  "pytest": "8.4.2",
+  "python": "3.12.14",
+  "schema": "rarv.actual-controller-cpu-replay.v1",
+  "scope": "Scripted tool requests through the frozen controller, adapter and gate on a synthetic Git checkout",
+  "status": "PASS"
+}

@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+.env
+.env.*
+rarv_cpu_review_*/
+*.zip
+!evidence/Gemma4_RARV_CPU_Review_Package_v1_0.zip
+*.whl
+*.patch
+*.diff
+*.docx

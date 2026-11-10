@@ -1,0 +1,107 @@
+{
+  "GP03_primary_inference": {
+    "assigned_pair_bounds": [
+      0.0,
+      0.0
+    ],
+    "bootstrap_draws": 10000,
+    "bootstrap_seed": 20261108,
+    "paired_counts": {
+      "b_only": 1,
+      "both_pass": 5,
+      "c_only": 1,
+      "neither_pass": 2
+    },
+    "paired_repo_stratified_bootstrap_95": [
+      -0.2222222222222222,
+      0.2222222222222222
+    ],
+    "protected_success_difference_c_minus_b": 0.0
+  },
+  "GP05_protected_counts": {
+    "C": {
+      "errors": 0,
+      "failures": 1,
+      "passed": 97,
+      "skipped": 0,
+      "tests": 98
+    }
+  },
+  "autonomous_proactive_rechecks": 0,
+  "autonomous_runs": 24,
+  "cohorts": {
+    "GP03_primary": {
+      "pairs_assigned": 9,
+      "pairs_held": 0,
+      "pairs_scored": 9,
+      "protected_passes": {
+        "B": 6,
+        "C": 6
+      },
+      "verified_deliveries": {
+        "B": 5,
+        "C": 4
+      }
+    },
+    "GP04_autonomous": {
+      "pairs_assigned": 2,
+      "pairs_held": 0,
+      "pairs_scored": 2,
+      "protected_passes": {
+        "B": 1,
+        "C": 1
+      },
+      "verified_deliveries": {
+        "B": 0,
+        "C": 0
+      }
+    },
+    "GP04_controlled": {
+      "pairs_assigned": 2,
+      "pairs_held": 0,
+      "pairs_scored": 2,
+      "protected_passes": {
+        "B": 2,
+        "C": 2
+      },
+      "verified_deliveries": {
+        "B": 0,
+        "C": 0
+      }
+    },
+    "GP05_autonomous": {
+      "pairs_assigned": 1,
+      "pairs_held": 0,
+      "pairs_scored": 1,
+      "protected_passes": {
+        "B": 0,
+        "C": 0
+      },
+      "verified_deliveries": {
+        "B": 0,
+        "C": 0
+      }
+    }
+  },
+  "controlled_detections": {
+    "requests_7205": 1.047,
+    "rich_3718": 1.15
+  },
+  "controlled_runs": 4,
+  "input_mode": "bundled_original_json_members",
+  "qualifying_autonomous_pass_to_edit_events": 0,
+  "schema": "rarv.archive-derived-results.v1",
+  "source_archive_digests": {
+    "gp03_grade": "6d0b6fbfb3c01818ebdd116a389b66758e727cc77851b808a38e15f79751f294",
+    "gp03_wave1": "7b9d91ade35ac6fa9d134cc515ccd800ce6e36b6ccc3ef5118880910d8bf8432",
+    "gp03_wave2": "71700ac891c04ae3d38ccce2d2ea4fafff424c261cda077e2d419e98234bb814",
+    "gp04_gpu": "983bc908991f06c31ff315ea795ae6dc861175891c1879f1f00dad13efe44f3b",
+    "gp04_grade": "1c00b32c0c62a8fafb5f260382371a347480276de29859c5ec3c5ede78812b98",
+    "gp05_gpu": "d6f2661af96415237e5e91fff97bcc99bc5a5c0524964405338641b1052380ba",
+    "gp05_grade": "5f41a57ea546401811fbd9ebb8f883989179f4b5c29b7fc6a52b68217ce863ba"
+  },
+  "status": "PASS",
+  "verified_original_patch_records": 0,
+  "verified_original_zip_count": 0,
+  "verified_source_members": 12
+}

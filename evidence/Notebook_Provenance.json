@@ -1,0 +1,136 @@
+[
+  {
+    "path": "notebooks/GP00_Task_Audit.ipynb",
+    "purpose": "Audit the task inventory and construct the provisional development and evaluation split.",
+    "source_file": "dataset-verification.ipynb",
+    "original_sha256": "68b0871c96e0e6115ef8032953c4c80f2d0660b813bcdadbe15481ecc8ec8b3b",
+    "publication_sha256": "6f4a8984d40a31986051ea39c2c6c4ca059f4d4e06ae8ba339ada53f819fc5d3",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP01A_Harness_Check.ipynb",
+    "purpose": "Check that the organizer evaluator can distinguish a baseline failure from a reference pass.",
+    "source_file": "gp01a.ipynb",
+    "original_sha256": "09d35bdba005e6eaf216e0f656e845b68b3b7c67de330ee56bece03f0016f2ef",
+    "publication_sha256": "09588b42f872180832674712513799cc00320f9562310c724f18cdb1566fdbf2",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP01B_Reference_Qualification.ipynb",
+    "purpose": "Qualify the development cases against independent baseline and reference outcomes.",
+    "source_file": "gp01b (1).ipynb",
+    "original_sha256": "09673f97f61ba097baa14c7c0f633f331480822a85b550838fde9d04b25a10f6",
+    "publication_sha256": "08bbb52c422de401454ef1fbaf0f1751bb129bb312143222f9afe02ba7d82309",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP01C_Qualification_Retry.ipynb",
+    "purpose": "Recheck the development cases with outstanding infrastructure issues.",
+    "source_file": "gp01c.ipynb",
+    "original_sha256": "7f0155caeb2fcf9a4de9d42869806f4d1f1c24f3ba6df61361a60393bc7dff15",
+    "publication_sha256": "275745295d28be20eb042cd53d6dd5b9e354efb6c77c00c829487810728a1514",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP02B_Six_Development_Cases.ipynb",
+    "purpose": "Inspect the six-case development batch and repair traces instrumentation.",
+    "source_file": "gp02b-v2-7.ipynb",
+    "original_sha256": "478fc0cdf77aeef6bd8c9c7f5bcb54e98f188d5b0bb5f7396cbab9dca02e6110",
+    "publication_sha256": "1979855f61685bfd53d55a213e683603908ecc104860eb52a6b60cc471edd447",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP02C_Revision_Ledger.ipynb",
+    "purpose": "Exercise revision changes and verification receipt states on CPU.",
+    "source_file": "GP02C_02_Evidence_Freshness_Ledger_CPU_v1_2.ipynb",
+    "original_sha256": "5ba144baa82ff6605c9ad5afc3973305a663f53e1b29db1c6559e28dad77ce9e",
+    "publication_sha256": "48a5c4f763d49e42bd8671220d61acf601ab8c582ae5866b0c04a3d70565708e",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP02C_Trusted_Pytest_Adapter.ipynb",
+    "purpose": "Exercise the trusted pytest adapter and its provenance checks.",
+    "source_file": "GP02C_03_Trusted_Real_Pytest_Live_Adapter_CPU_v1_1.ipynb",
+    "original_sha256": "1e541df58524e92cbc3fb7756cc5ddfb57dee74548668fc17e580f41c1b03a0f",
+    "publication_sha256": "de9354978f78c3a1891dcc6ec4b4922d52cea58933b3a29aa0bbd3ce417c80df",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP02C_Live_Attachment.ipynb",
+    "purpose": "Inspect the early organizer-worker attachment for the revision controller.",
+    "source_file": "GP02C_04B_Live_ADK_Gemma_Integration_v1_1.ipynb",
+    "original_sha256": "98cfc4ddb81f6a6e069a15e19eaa4390a19dec63f2976d0ff534cd7574691ce5",
+    "publication_sha256": "a7b47525ab2dfac89517246034d85f0fc59ac6de6b4563cb51d259c416450331",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP03_CPU_Qualification.ipynb",
+    "purpose": "Qualify public test execution and recover environment-specific holds.",
+    "source_file": "GP03_CPU_Qualification_Retry_v1_1.ipynb",
+    "original_sha256": "9d8b7aaec3c85695ca72972c575720aed67072fed93d0c8eacee56e9fc11a159",
+    "publication_sha256": "2afca2f4d8d389e6bf121ca2d68b5ba02bee6c83cd2b193ba12f1730288dc011",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP03_Public_Adapter.ipynb",
+    "purpose": "Verify the public test adapter against the selected nine tasks.",
+    "source_file": "GP03_Public_Adapter_Acceptance_v1_0.ipynb",
+    "original_sha256": "794730add3073072c774867bb8f9dc7c0dde288251aba086588d6472cf58e21d",
+    "publication_sha256": "a665b1b58441973cd7817e4307b099919d1c0cca59451afc590eeabed3833dcd",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP03_Paired_CPU_Acceptance.ipynb",
+    "purpose": "Exercise the paired B and C paths and the synthetic fixture used by E17.",
+    "source_file": "GP03_Paired_Runner_CPU_Acceptance_v1_0.ipynb",
+    "original_sha256": "96eb1bbd2b667559fef00cd11b046029379cab01aa0a855a4b33e28f26fbb84c",
+    "publication_sha256": "a3abc8d6ada98f6d27ad46c9770f50cb6950612ebc252517905f3118c4e936e1",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP03_Official_Worker_Acceptance.ipynb",
+    "purpose": "Check the organizer worker boundary, inputs and attachment contract.",
+    "source_file": "GP03_Official_Worker_Acceptance_v1_0.ipynb",
+    "original_sha256": "1de6181bd8c4a506e5f18da5aeb4701aadc68100212991c5170095d2fb33771f",
+    "publication_sha256": "41f453c5e6ccff11fc9b2aafe02d3b7f867d1755f6738b3060fd8e2fa7f5e453",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP03_Frozen_Evaluation.ipynb",
+    "purpose": "Inspect the frozen paired evaluation and accepted transport settings.",
+    "source_file": "GP03_Held_Out_Evaluation_v1_1.ipynb",
+    "original_sha256": "bd0322972bd71e42bdc494af2f54a012b7d111f4b869ecca04e203307c0e01c4",
+    "publication_sha256": "a8be6e32c9144684a1c91ff140780c50b8cd23aea95b620e2153f17746bff21c",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP03_Independent_Grading.ipynb",
+    "purpose": "Independently grade archived production candidates in the organizer evaluator.",
+    "source_file": "GP03_CPU_Grading_v1_1.ipynb",
+    "original_sha256": "6bb6e5f903577511be61eb1e52b42f8d320f3fd739df650d492e936aa60321cb",
+    "publication_sha256": "e3819dc6b0ab923c735a1d75d709fc1db9a436554a925b0c73998d827bfc9d90",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP03_Final_Grade_Recovery.ipynb",
+    "purpose": "Restore the missing offline dependencies and reconcile all nine primary pairs.",
+    "source_file": "GP03_CPU_Grade_Recovery_v1_5.ipynb",
+    "original_sha256": "901e77b3d12ec4fdfe26e8c539d5da89acaea9918e29e60e012bf5934dabcc7a",
+    "publication_sha256": "6321515fc00c54cc28f1aa169ca2cd08a95090f97640147e9258b9cbf8e2cbb7",
+    "classification": "study source copy with outputs removed"
+  },
+  {
+    "path": "notebooks/GP04_Followup_Evidence.ipynb",
+    "purpose": "Read the GP04 controlled and additional autonomous results.",
+    "classification": "derived evidence notebook",
+    "publication_sha256": "ad851cb102970a864aadfc8a5322124170bee6d529546ff0e5e0b644a3843833"
+  },
+  {
+    "path": "notebooks/GP05_Supplemental_Pair.ipynb",
+    "purpose": "Qualify, execute and independently grade the twelfth autonomous pair.",
+    "source_file": "GP05_Rich_3470_Autonomous_Pair_v1_0.ipynb",
+    "original_sha256": "b54f7bc7ebb555c0b4b6a2f842bc5310717fafb590a4604d7e15ca2e9415bece",
+    "publication_sha256": "e6c5cc6759b528a51f496ead39057bee1c7fc0157d84ee67cb50c10e5c337803",
+    "classification": "study source copy with outputs removed"
+  }
+]
