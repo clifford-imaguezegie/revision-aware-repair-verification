@@ -6,8 +6,7 @@ Research companion for the **Gemma 4 Developer Agent Paper Track** by **Clifford
 
 **Primary reviewer entry point:** [**Public Kaggle RARV companion notebook**](https://www.kaggle.com/code/cliffordimaguezegie/gemma4-revision-aware-repair-verification/notebook). It presents the architecture, study evidence, runnable E17 CPU replay, archived-result reconciliation and source-module inspection without running Gemma inference. Attach the [public E17 evidence dataset](https://www.kaggle.com/datasets/cliffordimaguezegie/gemma4-rarv-evidence) when running on Kaggle.
 
-- **Exact uploaded companion source:** [`Gemma4_RARV_Kaggle_Companion_v2_6.ipynb`](notebooks/Gemma4_RARV_Kaggle_Companion_v2_6.ipynb), retained with its saved outputs and provenance as provided by the author. The notebook's internal release metadata identifies **v2.6**; its saved hosted-run description identifies Kaggle Notebook Version 3. These are different version identifiers.
-- **Earlier notebook:** [`Gemma4_RARV_Kaggle_Companion_v1_5.ipynb`](notebooks/Gemma4_RARV_Kaggle_Companion_v1_5.ipynb) remains available for historical reference, but is **not** the recommended reviewer entry point.
+- [**Saved Kaggle notebook export**](notebooks/Gemma4_RARV_Kaggle_Companion_v2_6.ipynb)
 - **Reproduction instructions:** [CPU verification, optional full archive audit and original GPU experiment paths](evidence/REPRODUCE.md).
 
 ## Objective
